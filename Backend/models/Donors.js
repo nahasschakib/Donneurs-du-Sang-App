@@ -3,7 +3,7 @@ const mongoose =require("mongoose");
 const DonorSchema=mongoose.Schema({
     name:{type:String,require:true},
     email:{type:String,require:true},
-    address:{type:string},
+    address:{type:String},
     tel:{type:String},
     Bloodgroup:{type:String},
     Weight:{type:Number},
