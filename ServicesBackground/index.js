@@ -3,6 +3,10 @@ const app = express();
 const dotenv =require("dotenv");
 const dbConnection=require("./utilis/db");
 const cron=require("node-cron");
+const { sendEligibilityEmail } = require("./emailServices/sendEligibilityEmail");
+const { sendDetailsProspectEmail } = require("./emailServices/sendDetailsProspect");
+const { sendDonationReminder } = require("./emailServices/sendDonationReminder");
+const { sendDonorDetailsEmail } = require("./emailServices/sendDonorDetailsEmail");
 
 dotenv.config()
 
@@ -24,7 +28,10 @@ app.listen(PORT,()=>{
 const run =()=>{
 
     cron.schedule('* * * * * ', () => {
-        console.log('running a task every minute');
+        sendDetailsProspectEmail();
+        sendEligibilityEmail();
+        sendDonationReminder();
+        sendDonorDetailsEmail();
       });
 }
 run();
