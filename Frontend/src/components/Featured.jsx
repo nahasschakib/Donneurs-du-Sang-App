@@ -12,8 +12,8 @@ function Featured() {
                 <li className="mt-3 text-[14px]" >1.Donneurs de Sang specialies et supervision clinique</li>
                 <li className="mt-3 text-[14px]">2.Amelioration de la communication entre les Membres</li>
                 <li className="mt-3 text-[14px]" >3.Evaluation , Dignostic et traitement de haute qualite</li>
-                <li className="mt-3 text-[14px]">4.Examiner de maniere critique pour assurer l'alignement</li>
-                <li className="mt-3 text-[14px]">5.Soins supplementaires d'une equipe Multi-disciplinaires</li>
+                <li className="mt-3 text-[14px]">4.Examiner de maniere critique pour assurer alignement</li>
+                <li className="mt-3 text-[14px]">5.Soins supplementaires une equipe Multi-disciplinaires</li>
             </ul>
             </div>
         </div>
