@@ -17,10 +17,11 @@ const Donors = () => {
         renderCell:()=>{
           return(
             <>
-            <Link to={`/Admin/123`}/>
+            <Link to={`/Admin/Donor/123`}>
             <button className="bg-gray-400 text-white cursor-pointer w-[70px]">
               Editer
-              </button> 
+            </button>
+            </Link>   
             </>
           )
         }
@@ -31,10 +32,12 @@ const Donors = () => {
         renderCell:()=>{
           return(
             <>
-            <Link to={`/Admin/123`}/>
+            <Link to={`/Admin/Donor/123`}>
             <FaTrash className="text-red-600 cursor-pointer w-[70px]">
              Supprimer
               </FaTrash> 
+             </Link> 
+             
             </>
           )
         }
@@ -87,16 +90,17 @@ const Donors = () => {
     }
   ]
   return (
-    <div className="w-[70vw]">
+    <div className="w-[75vw]">
       <div className="flex items-center justify-between m-[30px]">
 
         <h1 className="m-[20x] text-[20px] font-semibold">
           Tous les Donateur
         </h1>
-
+        <Link to ="/Admin/Newdonor">
         <button className="bg-[#1e1e1e] text-white p-[10px] cursor-pointer font-semibold">
           Nouveau Donateur
         </button>
+        </Link>
       </div>
 
       <div>

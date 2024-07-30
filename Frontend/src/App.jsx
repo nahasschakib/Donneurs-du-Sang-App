@@ -5,6 +5,9 @@ import Admin from "./pages/Admin";
 import Donors from "./pages/Donors";
 import Prospects from "./pages/Prospects";
 import Menu from "./components/Menu";
+import Newdonor from "./pages/Newdonor";
+import Donor from "./pages/Donor";
+import Prospect from "./pages/Prospect";
 
 function App() {
 
@@ -12,10 +15,10 @@ function App() {
 
 return(
   <div className="flex" >
-    <div className="div">
-   <Menu/>
+    <div >
+       <Menu/>
     </div>
-    <div className="div">
+    <div >
       <Outlet/>
     </div>
   </div>
@@ -45,6 +48,18 @@ return(
       {
         path:"/Admin/Prospects",
         element:<Prospects/>,
+      },
+      {
+        path:"/Admin/Newdonor",
+        element:<Newdonor/>,
+      },
+      {
+        path:"/Admin/Donor/:id",
+        element:<Donor/>,
+      },
+      {
+        path:"/Admin/Prospect/:id",
+        element:<Prospect/>,
       },
     ],
     
