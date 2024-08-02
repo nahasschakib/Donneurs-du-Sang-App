@@ -11,7 +11,7 @@ const DonorSchema=mongoose.Schema({
     Diseases:{type:String},
     age:{type:Number},
     Bloodpressure:{type:Number},
-    status:{type:Number}
+    status:{type:Number},
 })
 
 module.exports=mongoose.model("Donors",DonorSchema)

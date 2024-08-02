@@ -1,4 +1,4 @@
-const Donor = require("../models/Donors");
+const Donor = require("../models/Donor");
 
 //CREATE DONOR
 
