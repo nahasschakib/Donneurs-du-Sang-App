@@ -70,7 +70,8 @@ function Admin() {
           <ul>
             <li>1.James Lisley</li>
             <li>2.Joel Lispler</li>
-            <li>1.James Lisley</li>
+            <li>3.James Lisley</li>
+            <li>4.ACHRAF Hamid</li>
           </ul>
         </div>
         <PieChart 

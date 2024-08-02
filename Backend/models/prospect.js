@@ -1,14 +1,17 @@
 const mongoose=require("mongoose");
 
 const ProspectSchema=mongoose.Schema({
-    name:{type:String , require:true},
-    email:{type:String ,require:true},
-    password:{type:String ,require:true},
-    status:{type:Number,default:0},
-    role:{type:String ,default:"admin"}
-},
-{
-    timestamp:true
+    name:{type:String,require:true},
+    email:{type:String,require:true},
+    address:{type:String},
+    tel:{type:String},
+    Bloodgroup:{type:String},
+    Weight:{type:Number},
+    date:{type:String},
+    Diseases:{type:String},
+    age:{type:Number},
+    Bloodpressure:{type:Number},
+    status:{type:Number},
 })
 
-module.exports=mongoose.model("prospect",ProspectSchema)
+module.exports=mongoose.model("Prospect",ProspectSchema)

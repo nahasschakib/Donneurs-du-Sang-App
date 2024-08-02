@@ -1,6 +1,29 @@
 
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { publicRequest } from "../requestMethods";
+
 
 function Donor() {
+
+  const[donor,setDonor] = useState({});
+  const location = useLocation();
+  const donorId=location.pathname.split("/")[3];
+
+  useEffect (()=>{
+    const getDonor =async()=>{
+      try {
+        const res =await publicRequest.get(`/donors/find/${donorId}`);
+        setDonor(res.data);
+         }
+       catch (error) {
+        console.log(error)
+      }
+    }
+      getDonor();
+     
+  },[]);
+
   return (
     <div className="flex items-center justify-center min-h-screen">
 
@@ -10,15 +33,15 @@ function Donor() {
         <div className="flex flex-col my-[12px]">
 
           <label htmlFor="">Nom</label>
-          <input type="text" placeholder="James Doe"
+          <input type="text" placeholder={donor.Nom}
            className="border-b-2 border-b-[#555] border-solid outline-none p-[10px] w-[300px]"/>
 
-<label htmlFor="">Aresse</label>
-          <input type="text" placeholder="123 ,DomnTown city "
+          <label htmlFor="">Adresse</label>
+          <input type="text" placeholder={donor.Adresse}
           className="border-b-2 border-b-[#555] border-solid outline-none p-[10px] w-[300px]"/>
          
           <label htmlFor="">Email</label>
-          <input type="text" placeholder="james@exemple.com"
+          <input type="email" placeholder={donor.email}
            className="border-b-2 border-b-[#555] border-solid outline-none p-[10px] w-[300px]"/>
 
 
@@ -46,16 +69,16 @@ function Donor() {
       <div className="flex flex-col my-[12px]">
 
 <label htmlFor="">Tel</label>
-<input type="text" placeholder="(+212 10101010)"
+<input type="text" placeholder={donor.Tel}
  className="border-b-2 border-b-[#555] border-solid outline-none p-[10px] w-[300px]"/>
 
 
 <label htmlFor="">Poids</label>
-<input type="Number" placeholder="50 kg"
+<input type="Number" placeholder={`${donor.weight} kg`}
  className="border-b-2 border-b-[#555] border-solid outline-none p-[10px] w-[300px]"/>
 
 <label htmlFor="">Date</label>
-<input type="text" placeholder="2024/07/30" 
+<input type="text" placeholder={donor.date}
 className="border-b-2 border-b-[#555] border-solid outline-none p-[10px] w-[300px]"/>
 
 <label htmlFor="" >Souffrez-vous des Maladies</label>

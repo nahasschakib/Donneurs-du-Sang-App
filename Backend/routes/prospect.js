@@ -1,20 +1,22 @@
 const express = require("express");
-const { createProspect, getAllProspects, updateProspect, getOneProspect, deleteProspect, getAllprospects } = require("../controllers/prospect");
+const { createProspect, updateProspect, getOneProspect, deleteProspect, getAllprospects } = require("../controllers/prospect");
+const { verifyTokenAndAuthorization } = require("../middleware/verifyToken");
 const router = express.Router();
 
-//ADD DONOR
-router.post("/", createProspect);
+//ADD prospect
+router.post("/",verifyTokenAndAuthorization, createProspect);
 
-//GET ALL DONORS
+//GET ALL prospects
+
 router.get("/", getAllprospects)
 
-//UPDATE DONOR
+//UPDATE prospect
 router.put("/:id", updateProspect);
 
-//GET ONE DONOR
+//GET ONE prospect
 router.get("/find/:id", getOneProspect);
 
-//DELETE DONOR
+//DELETE prospect
 router.delete("/:id", deleteProspect);
 
 

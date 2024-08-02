@@ -1,16 +1,20 @@
 import { DataGrid } from '@mui/x-data-grid';
 import { Link } from "react-router-dom";
 import {FaTrash} from "react-icons/fa";
+import { useEffect, useState } from 'react';
+import { publicRequest } from '../requestMethods';
+
 
 
 const Donors = () => {
+  const [Donors,setDonors] = useState([])
 
   const columns =[
-    {field:"id",headerName:"ID",width:90},
+    {field:"_id",headerName:"ID",width:90},
     {field:"name",headerName:"Nom",width:150},
     {field:"Adresse",headerName:"Adresse",width:150},
-    {field:"BloodType",headerName:"Groupe Sang.",width:130},
-    {field:"diseases",headerName:"Maladies",width:150},
+    {field:"Bloodgroup",headerName:"Groupe Sang.",width:130},
+    {field:"Diseases",headerName:"Maladies",width:150},
       {field:"edit",
         headerName:"Editer",
         with:150,
@@ -18,7 +22,7 @@ const Donors = () => {
           return(
             <>
             <Link to={`/Admin/Donor/123`}>
-            <button className="bg-gray-400 text-white cursor-pointer w-[70px]">
+            <button className="bg-green-600 text-white cursor-pointer w-[70px] ">
               Editer
             </button>
             </Link>   
@@ -29,11 +33,11 @@ const Donors = () => {
       {field:"delete",
         headerName:"Supprimer",
         with:150,
-        renderCell:()=>{
+        renderCell:(params)=>{
           return(
             <>
             <Link to={`/Admin/Donor/123`}>
-            <FaTrash className="text-red-600 cursor-pointer w-[70px]">
+            <FaTrash className="text-red-600 cursor-pointer w-[70px] mt-4" onClick={()=> handleDelete(params.rows._id)} >
              Supprimer
               </FaTrash> 
              </Link> 
@@ -42,54 +46,33 @@ const Donors = () => {
           )
         }
       }
-  ]
+  ] 
 
+  
 
-  const rows =[
-    {id: "1",
-      name: "John Doe",
-      Adresse:"123 ,Bd Zerktouni casablanca",
-      BloodType:" O+",
-      diseases:"Cardiaque",
-    },
-    {id: "2",
-      name: "Mohammed Zaid",
-      Adresse:"408,Bd Zerktouni casablanca",
-      BloodType:" A-",
-      diseases:"Strees",
-    },
-    {id: "3",
-      name: "John Doe",
-      Adresse:"123 ,Bd Zerktouni casablanca",
-      BloodType:" O+",
-      diseases:"Cardiaque",
-    },
-    {id: "4",
-      name: "Chahid Radouane",
-      Adresse:"123 ,Bd Zerktouni casablanca",
-      BloodType:" O+",
-      diseases:"Alinma",
-    }
-    ,  {id: "5",
-      name: "Taha NAHASS",
-      Adresse:"25 hay Dakhla casablanca",
-      BloodType:" O-",
-      diseases:"N/A",
-    },
-    {id: "6",
-      name: "David Cohn",
-      Adresse:"424 ,HassanIIcasablanca",
-      BloodType:" O+",
-      diseases:"Dabete",
-    },
-    {id: "7",
-      name: "Phils Moore",
-      Adresse:"123 ,Bd Zerktouni Marrakech",
-      BloodType:" AB-",
-      diseases:"Ascme",
-    }
-  ]
-  return (
+  useEffect(()=>{
+
+      const getDonors = async ()=>{
+        try {
+          const res = await publicRequest.get("/Donors");
+          setDonors(res.data)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      getDonors()
+  },[])
+
+ const handleDelete=async(id)=>{
+  try {
+    await publicRequest.delete(`/donors/${id}`);
+    window.location.reload();
+  } catch (error) {
+    console.log(error)
+  }
+ }
+
+   return (
     <div className="w-[75vw]">
       <div className="flex items-center justify-between m-[30px]">
 
@@ -105,7 +88,9 @@ const Donors = () => {
 
       <div>
 
-        <DataGrid rows={rows} checkboxSelection columns={columns} />
+        <DataGrid rows={Donors} 
+       getRowId={(row)=>row._id}
+        checkboxSelection columns={columns} />
 
       </div>
 

@@ -1,6 +1,27 @@
-
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { publicRequest } from "../requestMethods";
 
 function Prospect() {
+
+    const[prospect,setProspect] = useState({});
+  const location = useLocation();
+  const prospectId=location.pathname.split("/")[3];
+
+  useEffect (()=>{
+    const getProspect =async()=>{
+      try {
+        const res =await publicRequest.get(`/prospects/find/${prospectId}`);
+        setProspect(res.data);
+         }
+       catch (error) {
+        console.log(error)
+      }
+    }
+      getProspect();
+     
+  },[]);
+
   return (
     <div className="flex items-center justify-center min-h-screen">
 
@@ -9,31 +30,31 @@ function Prospect() {
             <ul className="m-[30px]">
                 <li className="m-[14px]">
                     <strong> Name :  </strong> 
-                    John Doe
+                   {prospect.Name}
                 </li>
                 <li className="m-[14px]">
                     <strong> Adresse :  </strong> 
-                    123,BD Zerktouni Casablanca
+                    {prospect.Adresse}
                 </li>
                 <li className="m-[14px]">
                     <strong> Tel :  </strong> 
-                   (+212 10101010)
+                   {prospect.Tel}
                 </li>
                 <li className="m-[14px]">
                     <strong> Type du Sang :  </strong> 
-                    Inconnu
+                    {prospect.bloodgroup}
                 </li>
                 <li className="m-[14px]">
                     <strong> Maladies :  </strong> 
-                    N/A
+                {prospect.Maladies}
                 </li>
                 <li className="m-[14px]">
                     <strong> Poids :  </strong> 
-                    50kg
+                    {`${prospect.Poids} Kg`}
                 </li>
                 <li className="m-[14px]">
                     <strong> Date :  </strong> 
-                    30/07/2024
+                   {prospect.date}
                 </li>
                 <li className="m-[14px]">
                     <strong> Status :  </strong> 
